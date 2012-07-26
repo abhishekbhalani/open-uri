@@ -1,22 +1,22 @@
 
 var open = require('..')
   , fs = require('fs')
-  , assert = require('assert');
+  , should = require('should');
 
 describe('FTP scheme', function(){
 
   it('should get a text file from ftp', function(next){
     open('ftp://ftp.sunet.se/pub/Internet-documents/rfc/rfc100.txt', function(err, rfc){
-      assert.ifError(err);
+      if(err){ return next(err); }
       rfc.should.be.a('string')
-      assert.ok(rfc.length > 0);
+      rfc.length.should.be.above(0);
       next();
     })
   });
 
   it('should attempt to get a non-existing text file from ftp', function(next){
     open('ftp://ftp.sunet.se/im-not-here.txt', function(err, rfc){
-      assert.ok(err)
+      err.should.be.an.instanceof(Error);
       should.not.exist(rfc);
       next()
     })

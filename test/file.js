@@ -1,7 +1,5 @@
 
 var open = require('..')
-  , mocha = require('mocha')
-  , assert = require('assert')
   , should = require('should')
   , misc = require('./misc');
 
@@ -9,9 +7,9 @@ describe('File scheme', function(){
 
   it('should get a relative file', function(next){
     open(__dirname+'/../README.md', function(err, log){
-      assert.ifError(err);
-      assert.ok(Buffer.isBuffer(log));
-      assert.ok(log.length>0);
+      if(err){ return next(err); }
+      log.should.be.an.instanceof(Buffer);
+      log.length.should.be.above(0);
       next();
     })
   });
@@ -20,15 +18,15 @@ describe('File scheme', function(){
     var stream = misc.writeStream();
     open('file:///var/log/system.log',stream)
     stream.on('close', function(){
-      assert.ok(stream.written);
-      assert.ok(stream.ended);
+      stream.written.should.be.ok
+      stream.ended.should.be.ok
       next();
     });
   });
 
   it('should send an error', function(next){
     open('/i-dont-exist!', function(err, content){
-      assert.ok(err.message.indexOf('File Not Found') !== -1);
+      err.message.should.include('File Not Found');
       should.not.exist(content);
       next()
     });
