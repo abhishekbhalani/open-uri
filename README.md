@@ -64,7 +64,9 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * `anonymous` (boolean) If no user info is in the URI, add anonymous. Defaults to `true`.
 
+## Tests
 
+To run the tests, you must be connected to the Internet. Simply run `npm test`.
 
 ## History
 
