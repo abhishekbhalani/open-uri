@@ -226,7 +226,7 @@ exports["GET a redirect with a relative Location"] = function(beforeExit){
   open("http://golang.org/cmd/5a",function(err,go,res){
     loaded = true
     assert.ifError(err)
-    assert.includes(go,'<title>Command 5a - The Go Programming Language</title>')
+    assert.includes(go,'<title>5a - The Go Programming Language</title>')
   })
   beforeExit(function(){assert.ok(loaded)})
 }
