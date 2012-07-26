@@ -70,6 +70,12 @@ To run the tests, you must be connected to the Internet. Simply run `npm test`.
 
 ## History
 
+### 0.4.2
+
+* [Fix] Add Node.js compatibility
+* [Change] Fully async
+* [Change] Use Mocha and Should.js for the tests
+
 ### 0.4.1
 
 * [Fix] Added `buffer`-option to file and ftp schemes.
